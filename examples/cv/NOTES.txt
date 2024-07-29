@@ -23,3 +23,7 @@ Deploy crowdstrike
 
 
 Lumen Technologies provides digital and communication services, including network, cloud, security, and collaboration solutions, to businesses and consumers globally.
+
+SQL
+Python
+bash

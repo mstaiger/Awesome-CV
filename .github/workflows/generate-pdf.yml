@@ -1,0 +1,32 @@
+name: Generate PDF
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up TeX Live
+      uses: xu-cheng/texlive-action/full@v1
+
+    - name: Generate PDF
+      run: |
+        pdflatex -interaction=nonstopmode -halt-on-error examples/resume.tex
+        pdflatex -interaction=nonstopmode -halt-on-error examples/cv.tex
+        pdflatex -interaction=nonstopmode -halt-on-error examples/coverletter.tex
+
+    - name: Upload PDF artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: PDFs
+        path: |
+          examples/resume.pdf
+          examples/cv.pdf
+          examples/coverletter.pdf
